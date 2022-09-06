@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santri</title>
+</head>
+<body>
+    <h1>List Santri</h1>
+    <table>
+        <tr>
+            <th>Nama</th>
+            <th>No ekening</th>
+            <th>Saldo</th>
+            <th>Top Up</th>
+        </tr>
+        <% dataSantri.forEach((santri) => {%>
+            <tr>
+                <td><%= santri.nama %></td>
+                <td><%= santri.noRekening %></td>
+                <td><%= santri.saldo %></td>
+                <td>
+                    <form action="/topup/<%= santri.noRekening %>" method="GET">
+                        <button type="submit">TOPUP</button>
+                    </form>
+                </td>
+            </tr>
+        <% }); %> 
+    </table>
+</body>
+</html>

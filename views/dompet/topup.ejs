@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TopUPt</title>
+</head>
+<body>
+    <h1>Portal TopUp Uang Saku santri</h1>
+    <h1>Data Murid</h1>
+    <div>
+        <h2><%= nama %></h2>
+        <h3><%= nis  %> </h3>
+        <h3><%= noRekening  %></h3>
+        <h3><%= saldoNow  %> </h3>
+    </div>
+    <div>
+        <h2>Masukan saldo TopUp</h2>
+        <form action="/topup/<%= noRekening %>" method="POST">
+            <input type="number" name="saldo">
+            <button type="submit">TopUp</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories</title>
+</head>
+<body>
+    <h1>Categories</h1>
+    <a href="/pos/categories/add-category">
+        <button>Add Category</button>
+    </a>
+    <table>
+        <tr>
+            <th>Nama</th>
+            <th>Created Time</th>
+            <th>Updated Time</th>
+            <th>Update</th>
+            <th>Hapus</th>
+        </tr>
+        <% categoryData.forEach((category) => {%>
+            <tr>
+                <td><%= category.name %></td>
+                <td><%= category.time %></td>
+                <td><%= category.updateTime %></td>
+                <td>
+                    <form action="/pos/categories/update-category/<%= category._id %>" method="GET">
+                        <button>Update</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/pos/categories/<%= category._id %>" method="POST">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        <% }); %> 
+    </table>
+</body>
+</html>

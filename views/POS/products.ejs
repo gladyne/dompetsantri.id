@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+</head>
+<body>
+    <h1>Products</h1>
+    <button><a href="/pos/products/add-product">Add Product</a></button>
+    <table>
+        <tr>
+            <th>Product Name</th>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Stock</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <% products.forEach((product) => { %>
+            <tr>
+                <td><%= product.name %></td>
+                <td><%= product.category.name %></td>
+                <td>Rp.<%= product.amount %></td>
+                <td><%= product.stock %></td>
+                <td>
+                    <form action="/pos/products/<%= product._id %>" method="GET">
+                        <button>Edit</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/pos/products/<%= product._id %>" method="POST">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        <% }) %>
+    </table>
+</body>
+</html>
