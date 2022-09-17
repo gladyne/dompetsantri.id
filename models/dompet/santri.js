@@ -5,6 +5,7 @@ const santriSchema = new mongoose.Schema({
   nipd: String,
   saldo: Number,
   pesantren: String,
+  nfc: String
 });
 
 const Santri = new mongoose.model("Santri", santriSchema, "santri");
