@@ -7,8 +7,14 @@ const app = express.Router();
 
 app.get("/api/transaction", async (req, res) => {
   try {
-    const transactions = await History.find().lean();
-    res.status(200).json(transactions);
+    const limit = req.query.limit;
+    const transactions = await Transaction.find().lean();
+    const transactionsLimit = transactions.slice(
+      transactions.length - limit,
+      transactions.length
+    );
+    console.log(transactionsLimit);
+    res.status(200).json(transactionsLimit);
   } catch (error) {
     res.status(500).json({ errorMessage: `${error}` });
   }
@@ -74,6 +80,10 @@ app.post("/api/topup", async (req, res) => {
   }
 });
 
-app.get("api/");
+// app.get("api/transaction", async (req, res) => {
+//   const transactions = await Transaction.find();
+//   print(transactions);
+//   res.status(200);
+// });
 
 module.exports = app;
