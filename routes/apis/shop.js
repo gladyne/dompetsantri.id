@@ -1,6 +1,7 @@
 const express = require("express");
 const Santri = require("../../models/dompet/santri");
 const History = require("../../models/pos/history");
+const Transaction = require("../../models/pos/transaction");
 
 const app = express.Router();
 
@@ -13,7 +14,7 @@ app.get("/api/transaction", async (req, res) => {
   }
 });
 
-app.post("/api/transaction/", async (req, res) => {
+app.post("/api/transaction", async (req, res) => {
   const data = req.body;
   const id = data.nipd;
   const dataUser = await Santri.findOne({ nipd: id });
@@ -26,10 +27,11 @@ app.post("/api/transaction/", async (req, res) => {
     if (total > 0) {
       dataUser.saldo = total;
       dataUser.save();
-      await History.create({
+      await Transaction.create({
         custName: dataUser.nama,
         nipd: dataUser.nipd,
         total: paid,
+        isCO: true,
       });
       res.status(201).json({
         Success: "ok",
