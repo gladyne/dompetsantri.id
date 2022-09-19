@@ -14,7 +14,7 @@ app.get("/api/transaction", async (req, res) => {
   }
 });
 
-app.post("/api/transaction", async (req, res) => {
+app.post("/api/cashout", async (req, res) => {
   const data = req.body;
   const id = data.nipd;
   const dataUser = await Santri.findOne({ nipd: id });
@@ -73,5 +73,7 @@ app.post("/api/topup", async (req, res) => {
     }
   }
 });
+
+app.get("api/");
 
 module.exports = app;
