@@ -44,4 +44,34 @@ app.post("/api/transaction", async (req, res) => {
   }
 });
 
+app.post("/api/topup", async (req, res) => {
+  const data = req.body;
+  const id = data.nipd;
+  const dataUser = await Santri.findOne({ nipd: id });
+  if (dataUser === null) res.status(400).json({ Status: "NIPD tidak ada" });
+  else {
+    const topup = data.amount;
+    const saldo = dataUser.saldo;
+    const total = saldo + topup;
+
+    if (total > 0) {
+      dataUser.saldo = total;
+      dataUser.save();
+      await Transaction.create({
+        custName: dataUser.nama,
+        nipd: dataUser.nipd,
+        total: topup,
+        isCO: false,
+      });
+      res.status(201).json({
+        Success: "ok",
+        nama: dataUser.nama,
+        saldoSekarang: dataUser.saldo,
+      });
+    } else {
+      res.status(400).json({ Status: "gagal topup" });
+    }
+  }
+});
+
 module.exports = app;
