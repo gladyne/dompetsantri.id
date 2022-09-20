@@ -13,8 +13,12 @@ app.get("/api/transaction", async (req, res) => {
       transactions.length - limit,
       transactions.length
     );
-    console.log(transactionsLimit);
-    res.status(200).json(transactionsLimit);
+    if (limit) {
+      console.log(transactionsLimit);
+      res.status(200).json(transactionsLimit);
+    } else {
+      res.status(200).json(transactions.reverse());
+    }
   } catch (error) {
     res.status(500).json({ errorMessage: `${error}` });
   }
