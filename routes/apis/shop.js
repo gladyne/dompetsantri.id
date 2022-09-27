@@ -77,6 +77,7 @@ app.post("/api/topup", async (req, res) => {
       res.status(201).json({
         Success: "ok",
         nama: dataUser.nama,
+        topup: topup,
         saldoSekarang: dataUser.saldo,
       });
     } else {
