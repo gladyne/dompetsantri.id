@@ -46,6 +46,7 @@ app.post("/api/cashout", async (req, res) => {
       res.status(201).json({
         Success: "ok",
         nama: dataUser.nama,
+        paid: paid,
         saldoSekarang: dataUser.saldo,
       });
     } else {
