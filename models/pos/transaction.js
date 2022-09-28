@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const transactionSchema = new mongoose.Schema(
   {
     custName: String,
+    kelas: String,
     nipd: String,
     total: Number,
     isCO: Boolean,
@@ -10,6 +11,6 @@ const transactionSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const History = new mongoose.model("Transaction", transactionSchema);
+const Transaction = new mongoose.model("Transaction", transactionSchema);
 
-module.exports = History;
+module.exports = Transaction;

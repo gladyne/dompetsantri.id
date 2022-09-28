@@ -39,6 +39,7 @@ app.post("/api/cashout", async (req, res) => {
       dataUser.save();
       await Transaction.create({
         custName: dataUser.nama,
+        kelas: dataUser.kelas,
         nipd: dataUser.nipd,
         total: paid,
         isCO: true,
@@ -70,6 +71,7 @@ app.post("/api/topup", async (req, res) => {
       dataUser.save();
       await Transaction.create({
         custName: dataUser.nama,
+        kelas: dataUser.kelas,
         nipd: dataUser.nipd,
         total: topup,
         isCO: false,
@@ -84,6 +86,12 @@ app.post("/api/topup", async (req, res) => {
       res.status(400).json({ Status: "gagal topup" });
     }
   }
+});
+
+app.delete("/api/transaction", async (req, res) => {
+  const deletedTransaction = await Transaction.deleteMany();
+  console.log(deletedTransaction);
+  res.status(204).json({ Success: "Berhasil dihapus" });
 });
 
 // app.get("api/transaction", async (req, res) => {
